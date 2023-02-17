@@ -1,1 +1,6 @@
-<p>my-searches works!</p>
+<h2>
+  Mis busquedas
+</h2>
+<button type="button" *ngFor="let item of Results" (click)="redirectTo(item.id)" class="btn btn-outline-primary text-danger fw-bold m-2">
+  {{item.busqueda}}
+</button>

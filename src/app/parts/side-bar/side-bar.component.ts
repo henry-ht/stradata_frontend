@@ -24,14 +24,14 @@ export class SideBarComponent implements OnInit {
 
   listItems = [
     {
-      name: "peoples",
-      url: "/peoples",
-      icon: faHome
+      name: "searches",
+      url: "/searches",
+      icon: faStar
     },
     {
-      name: "search",
-      url: "/search",
-      icon: faStar
+      name: "my searches",
+      url: "/my-searches",
+      icon: faHome
     },
   ]
   constructor(private storage:StorageService, private request:RequestService, private user:UserService) { }

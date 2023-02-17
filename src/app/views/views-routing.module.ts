@@ -1,3 +1,4 @@
+import { MySearchesResultsComponent } from './my-searches-results/my-searches-results.component';
 import { SearchesComponent } from './searches/searches.component';
 import { MySearchesComponent } from './my-searches/my-searches.component';
 
@@ -15,6 +16,11 @@ const routes: Routes = [
   {
     path: 'my-searches',
     component: MySearchesComponent,
+    canActivate: [AccessGuard]
+  },
+  {
+    path: 'my-searches/:id',
+    component: MySearchesResultsComponent,
     canActivate: [AccessGuard]
   },
   {

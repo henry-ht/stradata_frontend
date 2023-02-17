@@ -5,13 +5,15 @@ import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchesComponent } from './searches/searches.component';
 import { MySearchesComponent } from './my-searches/my-searches.component';
+import { MySearchesResultsComponent } from './my-searches-results/my-searches-results.component';
 
 
 
 @NgModule({
   declarations: [
     SearchesComponent,
-    MySearchesComponent
+    MySearchesComponent,
+    MySearchesResultsComponent
   ],
   exports: [
     ViewsRoutingModule
