@@ -15,6 +15,7 @@ export class MySearchesResultsComponent {
   loadPage:boolean = false;
   Results:Search[];
   busqueda:String = "";
+  porcentaje:String = "";
 
   constructor(private route: ActivatedRoute, private router:Router, private request: RequestService, private noti:NotificationService) {}
 
@@ -31,6 +32,7 @@ export class MySearchesResultsComponent {
       next: (data:any)=> {
         if (data.status === 'success') {
           this.busqueda = data.data.busqueda;
+          this.porcentaje = data.data.porcentaje;
           this.Results = JSON.parse(data.data.coincidencias);
         }
       },

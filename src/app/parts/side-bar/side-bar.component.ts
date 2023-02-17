@@ -41,24 +41,11 @@ export class SideBarComponent implements OnInit {
 
   logout(){
     this.loadPage = true;
-    this.request.save('logout')
-      .subscribe({
-        next: (data:any)=> {
-          if(data.status == true){
-            this.storage.clearLocal();
-
-            setTimeout(() => {
-              window.location.reload();
-            }, 1000);
-          }
-
-          this.loadPage = false;
-        },
-        error: () => {
-          this.loadPage = false;},
-        complete: () => {
-          this.loadPage = false;}
-      });
+    this.storage.clearLocal();
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+    this.loadPage = false;
   }
 
 }
