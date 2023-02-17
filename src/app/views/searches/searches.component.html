@@ -1,0 +1,76 @@
+<div class="card">
+  <div class="card-header">
+    Buscador
+  </div>
+  <div class="card-body">
+
+    <form (ngSubmit)="onSubmit()" [formGroup]="SearchForm" name="SearchForm" class="row" >
+      <div class="form-group col-md-4 mb-3">
+        <label for="nombreInput">Nombre y apellido</label>
+          <input type="text" [ngClass]="{ 'is-invalid': isValid()['nombre'].dirty && isValid()['nombre'].errors }" class="form-control" formControlName="nombre" [readonly]="loadPage" placeholder="Ej: Homero simpson" id="nombreInput">
+          <small *ngIf="isValid()['nombre'].errors && isValid()['nombre'].dirty" class="form-text text-muted">
+            Nombre es requerido
+          </small>
+      </div>
+      <div class="form-group col-md-3 mb-3">
+        <label for="porcentajeInput">porcentaje de coincidencia</label>
+          <input type="number" [ngClass]="{ 'is-invalid': isValid()['porcentaje'].dirty && isValid()['porcentaje'].errors }" autocomplete="off" class="form-control"  [readonly]="loadPage" formControlName="porcentaje" id="porcentajeInput" placeholder="Ej: 95">
+          <small *ngIf="isValid()['porcentaje'].errors && isValid()['porcentaje'].dirty"  class="form-text text-muted">
+              El porcentaje es requerida
+          </small>
+      </div>
+      <div class="col-md-3">
+        <label for="porcentajeInput" class="text-white" aria-readonly="true" >botton</label>
+        <button type="submit" class="btn btn-outline-info w-100" [disabled]="SearchForm.invalid || loadPage" >
+            <fa-icon *ngIf="!loadPage" [icon]="iconSent"></fa-icon>
+            <img src="assets/img/load/arrow.gif"  *ngIf="loadPage" alt="icono de carga" class="animated_animated animated_fadeIn img-fluid icon-load-mini" >
+        </button>
+      </div>
+    </form>
+    <div class="col-md-12" *ngIf="suggestion != ''">
+      Quizas quisiste decir:
+      <button type="button" (click)="setSearch()" class="btn btn-light text-danger fw-bold">
+        {{suggestion}}
+      </button>
+    </div>
+    <div class="mt-3 table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Tipo persona</th>
+            <th scope="col">Tipo cargo</th>
+            <th scope="col">Departamento</th>
+            <th scope="col">Municipio</th>
+            <th scope="col">% Coincidencia</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of Results" >
+            <td class="text-lowercase text-capitalize">
+              {{item.nombre}}
+            </td>
+            <td class="text-capitalize" >
+                {{item.tipo_persona.toLowerCase( )}}
+            </td>
+            <td class="text-capitalize" >
+              {{item['tipo cargo'].toLowerCase( )}}
+            </td>
+            <td class="text-capitalize" >
+              {{item.departamento.toLowerCase( ) }}
+            </td>
+            <td class="text-capitalize" >
+              {{item.municipio.toLowerCase( ) }}
+            </td>
+            <td class="col-1">
+              {{item.similarity}} %
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+
+    </div>
+
+  </div>
+</div>
